@@ -7,10 +7,26 @@ project {
     sequence {
         build(BuildA)
         parallel {
-            build(BuildB)
-            build(BuildC)
+            sequence {
+                build(BuildB)
+                build(BuildC)
+            }
+            sequence {
+                build(BuildD)
+                parallel {
+                    build(BuildE)
+                    build(BuildF)
+                }
+                build(BuildG)
+            }
+            build(BuildH)
         }
-        build(BuildD)
+        build(BuildI)
+        parallel {
+            build(BuildJ)
+            build(BuildK)
+        }
+        build(BuildL)
     }
 }
 
@@ -53,6 +69,102 @@ object BuildC : BuildType({
 
 object BuildD : BuildType({
     name = "D"
+    steps {
+        script {
+            name = "Hello World"
+            scriptContent = """
+                echo "hello world! I'm a build"
+            """.trimIndent()
+        }
+    }
+})
+
+object BuildE : BuildType({
+    name = "E"
+    steps {
+        script {
+            name = "Hello World"
+            scriptContent = """
+                echo "hello world! I'm a build"
+            """.trimIndent()
+        }
+    }
+})
+
+object BuildF : BuildType({
+    name = "F"
+    steps {
+        script {
+            name = "Hello World"
+            scriptContent = """
+                echo "hello world! I'm a build"
+            """.trimIndent()
+        }
+    }
+})
+
+object BuildG : BuildType({
+    name = "G"
+    steps {
+        script {
+            name = "Hello World"
+            scriptContent = """
+                echo "hello world! I'm a build"
+            """.trimIndent()
+        }
+    }
+})
+
+object BuildH : BuildType({
+    name = "H"
+    steps {
+        script {
+            name = "Hello World"
+            scriptContent = """
+                echo "hello world! I'm a build"
+            """.trimIndent()
+        }
+    }
+})
+
+object BuildI : BuildType({
+    name = "I"
+    steps {
+        script {
+            name = "Hello World"
+            scriptContent = """
+                echo "hello world! I'm a build"
+            """.trimIndent()
+        }
+    }
+})
+
+object BuildJ : BuildType({
+    name = "J"
+    steps {
+        script {
+            name = "Hello World"
+            scriptContent = """
+                echo "hello world! I'm a build"
+            """.trimIndent()
+        }
+    }
+})
+
+object BuildK : BuildType({
+    name = "K"
+    steps {
+        script {
+            name = "Hello World"
+            scriptContent = """
+                echo "hello world! I'm a build"
+            """.trimIndent()
+        }
+    }
+})
+
+object BuildL : BuildType({
+    name = "L"
     steps {
         script {
             name = "Hello World"
