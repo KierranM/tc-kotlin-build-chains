@@ -6,8 +6,11 @@ version = "2019.1"
 project {
     sequence {
         build(BuildA)
-        build(BuildB)
-        build(BuildC)
+        parallel {
+            build(BuildB)
+            build(BuildC)
+        }
+        build(BuildD)
     }
 }
 
@@ -35,8 +38,21 @@ object BuildB : BuildType({
     }
 })
 
+
 object BuildC : BuildType({
     name = "C"
+    steps {
+        script {
+            name = "Hello World"
+            scriptContent = """
+                echo "hello world! I'm a build"
+            """.trimIndent()
+        }
+    }
+})
+
+object BuildD : BuildType({
+    name = "D"
     steps {
         script {
             name = "Hello World"
